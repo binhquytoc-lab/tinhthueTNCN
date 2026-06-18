@@ -78,7 +78,7 @@ def tinh_thue_tncn(gross, bonus, overtime, lunch, other, deps):
     temp_income = assessable_income
     previous_limit = 0
     tax_breakdown = []
-for b in brackets:
+    for b in brackets:
         range_size = b["limit"] - previous_limit
         if temp_income > 0:
             taxable_in_bracket = min(temp_income, range_size)
@@ -135,9 +135,10 @@ if st.button("🧮 Tính Thuế & Nhận Kết Quả", type="primary"):
         * **Tổng phí bảo hiểm:** `{res['total_insurance']:,.0f} VND`
     * **Giảm trừ gia cảnh:**
         * Giảm trừ bản thân người nộp: `15,500,000 VND`
-* Giảm trừ người phụ thuộc: `{res['dependent_reduction']:,.0f} VND` (cho {dependents} người)
+    * Giảm trừ người phụ thuộc: `{res['dependent_reduction']:,.0f} VND` (cho {dependents} người)
     * **Thu nhập tính thuế (đưa vào bảng lũy tiến):** `{res['assessable_income']:,.0f} VND`
     """)
+    
     if res['tax'] > 0:
         st.write("📊 **Chi tiết phân tách số tiền nộp theo biểu thuế 5 bậc mới (2026):**")
         st.table(res['tax_breakdown'])
